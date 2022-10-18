@@ -13,14 +13,21 @@ select album_name, avg(track_duration) from track
 group by album_name;
 
 --4. все исполнители, которые не выпустили альбомы в 2020 году;
-select musician_name, release_year  from track t
-left join album a on a.album_id = t.album_name
+select musician_name from track t
+join album a on a.album_id = t.album_name
 where release_year != 2020;
 
 
+--5. названия сборников, в которых присутствует конкретный исполнитель (Linkin Park у которых id = 10);
+select collection_name, musician_name from collection c
+join collection_track ct on ct.collection_id = c.collection_id 
+join track t on ct.track_id = t.track_id
+where musician_name = 10
 
---5. названия сборников, в которых присутствует конкретный исполнитель (выберите сами);
+
 --6. название альбомов, в которых присутствуют исполнители более 1 жанра;
 --7. наименование треков, которые не входят в сборники;
 --8. исполнителя(-ей), написавшего самый короткий по продолжительности трек (теоретически таких треков может быть несколько);
 --9. название альбомов, содержащих наименьшее количество треков.
+
+
