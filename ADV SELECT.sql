@@ -26,6 +26,12 @@ where musician_name = 10
 
 
 --6. название альбомов, в которых присутствуют исполнители более 1 жанра;
+select album_name from album a 
+join musician_album ma on ma.album_id = a.album_id
+join musician_genre mg on mg.musician_id = ma.musician_id 
+group by album_name
+having count(genre_id) > 1
+
 --7. наименование треков, которые не входят в сборники;
 --8. исполнителя(-ей), написавшего самый короткий по продолжительности трек (теоретически таких треков может быть несколько);
 --9. название альбомов, содержащих наименьшее количество треков.
