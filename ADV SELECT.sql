@@ -3,9 +3,9 @@ select genre_id, count(*)  from musician_genre mg
 group by genre_id
 
 -- 2.количество треков, вошедших в альбомы 2019-2020 годов;
-select album_name, count(*)  from track
-where album_name = (select album_id from album where release_year >= 2019 and release_year <= 2020)
-group by album_name;
+select count(*) from track t 
+join album a on a.album_id = t.album_name
+where release_year between 2019 and 2020; 
 
 -- 3.средняя продолжительность треков по каждому альбому;
 select album_name, avg(track_duration) from track 
@@ -40,7 +40,7 @@ join track t on t.musician_name = m.musician_id
 where track_duration = (select min(track_duration) from track t2 )
 
 --9. название альбомов, содержащих наименьшее количество треков.
-select a.album_name, count(track_id) from album a
+select a.album_name from album a
 join track t on t.album_name = a.album_id 
 group by a.album_name 
 having count(track_id) = 1 
