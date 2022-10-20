@@ -1,6 +1,12 @@
 -- 1.количество исполнителей в каждом жанре;
+
 select genre_id, count(*)  from musician_genre mg
 group by genre_id
+
+select  genre_name, count(*) from genre g 
+join musician_genre mg on mg.genre_id = g.genre_id
+group by genre_name 
+
 
 -- 2.количество треков, вошедших в альбомы 2019-2020 годов;
 select count(*) from track t 
@@ -10,6 +16,10 @@ where release_year between 2019 and 2020;
 -- 3.средняя продолжительность треков по каждому альбому;
 select album_name, avg(track_duration) from track 
 group by album_name;
+
+select a.album_name, avg(track_duration) from album a 
+join track t on t.album_name = a.album_id 
+group by a.album_name;
 
 --4. все исполнители, которые не выпустили альбомы в 2020 году;
 select musician_name from track t
