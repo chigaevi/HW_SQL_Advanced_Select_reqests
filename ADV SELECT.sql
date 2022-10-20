@@ -49,7 +49,7 @@ select m.musician_name from musician m
 join track t on t.musician_name = m.musician_id
 where track_duration = (select min(track_duration) from track t2 )
 
---9. название альбомов, содержащих наименьшее количество треков.
+--9. название альбомов, содержащих наименьшее количество треков. Я тут подзастрял как сформировать минимальное значение треков и сравнить его в having
 select a.album_name from album a
 join track t on t.album_name = a.album_id 
 group by a.album_name 
