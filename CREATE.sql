@@ -35,7 +35,7 @@ CREATE TABLE IF NOT exists collection (
 CREATE TABLE IF NOT exists track (
 	track_id SERIAL PRIMARY KEY,
 	track_name character(60) unique,
-	musician_name SERIAL references musician(musician_id),
+	--musician_name SERIAL references musician(musician_id),
 	album_name SERIAL REFERENCES album(album_id),
 	track_duration time CHECK (track_duration >= '00:00:30' and track_duration <= '00:10:00')
 );

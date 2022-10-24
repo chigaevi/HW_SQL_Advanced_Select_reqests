@@ -90,24 +90,24 @@ values
 delete from track
 
 -- Добавляем треки
-insert into track (track_name, musician_name, album_name, track_duration) 
+insert into track (track_name, album_name, track_duration) 
 values 
-('Coming in From The Cold', 9, 1,'00:04:31'), --Bob Marley/Uprising 
-('Chant Down Babylon', 9, 2,'00:02:35'), --Bob Marley/Confrontation
-('Dont Stay', 10,5,'00:03:08'), -- Linkin Park/Meteora
-('Sorry for Now', 10, 6,'00:03:23'), -- Linkin Park/One More Light
-('The House Jack Built', 1, 7,'00:06:39'), --Metallica/Load
-('Rejection', 2, 8,'00:04:06'), --AC/DC/Power Up
-('Demon Fire', 2, 8,'00:03:30'), --AC/DC/Power Up
-('Womanizer', 3, 3,'00:03:43'), -- Britney Spears/Circus 
-('Invitation', 3, 4,'00:03:19'), -- Britney Spears/Glory 
-('Baby Be Mine', 4, 9,'00:04:20'), --Michael Jackson/Thriller
-('Beat It', 4, 9,'00:04:18'), --Michael Jackson/Thriller
-('Bad', 4, 10,'00:04:07'), --Michael Jackson/Bad 
-('Big Dreams and Faded Jeans', 5, 11,'00:04:07'), --Dolly Rebecca Parton/Run, Rose, Run
-('Driven', 5, 11,'00:02:40'), --Dolly Rebecca Parton/Run, Rose, Run
-('3 Days Later', 7, 12,'00:02:39'), --De La Soul/Buhloone Mindstate
-('Eye Patch', 7, 12,'00:02:27'); --De La Soul/Buhloone Mindstate
+('Coming in From The Cold', 1,'00:04:31'), --Bob Marley/Uprising 
+('Chant Down Babylon', 2,'00:02:35'), --Bob Marley/Confrontation
+('Dont Stay', 5,'00:03:08'), -- Linkin Park/Meteora
+('Sorry for Now', 6,'00:03:23'), -- Linkin Park/One More Light
+('The House Jack Built', 7,'00:06:39'), --Metallica/Load
+('Rejection', 8,'00:04:06'), --AC/DC/Power Up
+('Demon Fire', 8,'00:03:30'), --AC/DC/Power Up
+('Womanizer', 3,'00:03:43'), -- Britney Spears/Circus 
+('Invitation', 4,'00:03:19'), -- Britney Spears/Glory 
+('Baby Be Mine', 9,'00:04:20'), --Michael Jackson/Thriller
+('Beat It', 9,'00:04:18'), --Michael Jackson/Thriller
+('Bad', 10,'00:04:07'), --Michael Jackson/Bad 
+('Big Dreams and Faded Jeans', 11,'00:04:07'), --Dolly Rebecca Parton/Run, Rose, Run
+('Driven', 11,'00:02:40'), --Dolly Rebecca Parton/Run, Rose, Run
+('3 Days Later', 12,'00:02:39'), --De La Soul/Buhloone Mindstate
+('Eye Patch', 12,'00:02:27'); --De La Soul/Buhloone Mindstate
 
 delete from collection_track
 

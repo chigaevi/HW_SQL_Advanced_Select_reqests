@@ -22,15 +22,17 @@ join track t on t.album_name = a.album_id
 group by a.album_name;
 
 --4. все исполнители, которые не выпустили альбомы в 2020 году;
-select musician_name from track t
-join album a on a.album_id = t.album_name
-where release_year != 2020;
+select musician_name  from musician m
+where musician_name != (select musician_name from album a join musician_album ma on ma.album_id = a.album_id join musician m on m.musician_id = ma.musician_id where release_year = 2020);
 
 --5. названия сборников, в которых присутствует конкретный исполнитель (Linkin Park у которых id = 10);
 select collection_name, musician_name from collection c
 join collection_track ct on ct.collection_id = c.collection_id 
-join track t on ct.track_id = t.track_id
-where musician_name = 10
+join track t on t.track_id = ct.track_id
+join album a on a.album_id =t.album_name
+join musician_album ma on ma.album_id = a.album_id
+join musician m on m.musician_id = ma.musician_id 
+where m.musician_id = 10
 
 --6. название альбомов, в которых присутствуют исполнители более 1 жанра;
 select album_name from album a 
@@ -45,12 +47,27 @@ left join collection_track ct on ct.track_id = t.track_id
 where collection_id is null
 
 --8. исполнителя(-ей), написавшего самый короткий по продолжительности трек (теоретически таких треков может быть несколько);
-select m.musician_name from musician m 
-join track t on t.musician_name = m.musician_id
-where track_duration = (select min(track_duration) from track t2 )
+select m.musician_name from track t 
+join album a on a.album_id =t.album_name
+join musician_album ma on ma.album_id = a.album_id
+join musician m on m.musician_id = ma.musician_id 
+where track_duration = (select min(track_duration) from track)
 
---9. название альбомов, содержащих наименьшее количество треков. Я тут подзастрял как сформировать минимальное значение треков и сравнить его в having
-select a.album_name from album a
+
+--9. название альбомов, содержащих наименьшее количество треков.
+select a.album_name from album a 
 join track t on t.album_name = a.album_id 
 group by a.album_name 
-having count(track_id) = 1 
+having count(track_id) = (select count from (select a.album_name, count(track_id) from album a join track t on t.album_name = a.album_id group by a.album_name order by count(track_id) limit 1) as big_)
+
+
+-- вложенный запрос поиска минимального количества треков
+select a.album_name, count(track_id) from album a 
+join track t on t.album_name = a.album_id 
+group by a.album_name 
+order by count(track_id) 
+limit 1;
+
+	
+
+
